@@ -2,9 +2,10 @@ FROM ubuntu:20.04
 RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt-get install -y wget curl
-RUN wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian92-x86_64-100.3.1.deb && \
-    apt install ./mongodb-database-tools-*.deb -y && \
-    rm -f mongodb-database-tools-*.deb
+RUN apt-get autoremove -y
+RUN wget https://downloads.mongodb.org/migrator/1.13.0/mongodb-relational-migrator_1.13.0-1_amd64.deb
+RUN apt install ./mongodb-database-tools-*.deb -y
+RUN rm -f mongodb-database-tools-*.deb
 
 RUN chmod +x ./mongo.sh
 CMD ["./mongo.sh"]
